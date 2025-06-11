@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>markdown-it Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Markdown-it Demo</h1>
+
+    <div id="markdown-input"># Hello, Markdown! <img src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'></div>
+    <button onclick="renderMarkdown()">Render</button>
+
+    <div id="output"></div>
+
+    <script>
+        const md = window.markdownit({
+            html: true
+        });
+
+        function renderMarkdown() {
+            const input = document.getElementById('markdown-input').innerHTML;
+            const html = md.render(input);
+            document.getElementById('output').innerHTML = html;
+        }
+
+        // Initial render
+        renderMarkdown();
+    </script>
+</body>
+
+</html>

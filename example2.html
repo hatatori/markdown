@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>markdown-it Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h1>Markdown-it Demo</h1> -->
+
+    <div id="markdown-input">
+        # Hello, Markdown!
+        <img src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+
+        function markdown_render(div) {
+            const md = window.markdownit({
+                html: true
+            });
+            const input = document.getElementById('markdown-input').innerHTML;
+            const html = md.render(input);
+            document.getElementById('output').innerHTML = html;
+            div.style.display = 'none';
+            const div2 = document.createElement('div');
+            div2.className = 'markdown-output markdown-body';
+            div2.innerHTML = html;
+            div.insertAdjacentElement('afterend', div2);
+        }
+
+        function trim_all(div) {
+            div.innerHTML = div.innerHTML
+                .split('\n')
+                .map(line => line.trim())
+                .join('\n');
+        }
+
+        // Initial render
+        trim_all(document.querySelector("#markdown-input"));
+        markdown_render(document.querySelector("#markdown-input"));
+        
+
+    </script>
+</body>
+
+</html>
